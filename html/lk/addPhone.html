@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Все пользователи</title>
+    <style>
+      body {
+        background-color: #f1f1f1;
+        padding: 0;
+        margin: 0;
+        font-size: 14px;
+        font-family: "Open Sans",sans-serif;
+      }
+      form{
+        display: grid;
+      }
+      
+      .admin-panel {
+          width: 100%;
+          height: 100vh;
+          max-width: -webkit-fill-available;
+          margin: auto;
+          overflow: hidden;
+          background-color: #fff;
+          position: relative;
+      }
+      
+      .slidebar {
+        width:15%;
+        float: left;
+        background-color: #111;
+          height: 100vh;
+      }
+      .slidebar ul {
+        position:relative;
+        height:100%;
+      }
+      
+      .slidebar a{
+        color: #bbb;
+        text-decoration:none;
+      }
+      .slidebar li{
+        text-align:left;
+        padding: 0x 0px;
+      }
+      
+      ul {
+        padding: 0;
+        margin:0;
+      }
+      li {
+        list-style-type: none;
+        margin: 0;
+        position: relative;
+        text-align:center;
+        color:#B3B3B3
+      }
+      .slidebar i {
+        display:block;
+        text-align:center;
+        color:#B3B3B3;
+        font-size: 40px;
+        margin-bottom: 8px;
+      }
+      .insideMain {
+          padding: 0 2rem;
+          overflow-y: scroll;
+          height: 80vh;
+      }
+      input[type="text"] {
+          width: 33vw;
+          height: 2rem;
+          font-size: 1.25rem;
+          padding: 0 10px;
+      }
+      .slidebar ul a {
+        color:#B3B3B3;
+        text-decoration: none;
+        box-sizing:border-box;
+        display: block;
+        text-transform: capitalize;
+        padding: 20px;
+      }
+      .slidebar li:hover a, li#active{
+        background-color: #313131;
+      }
+      .slidebar li:hover i, li#active i{
+        color: #17BCE8;
+      }
+      .slidebar li:focus i {
+        color: #17BCE8;
+      }
+      button {
+          width: 25vw;
+          height: 2rem;
+          border: 1px solid #111111;
+          color: black;
+          background-color: rgba(154, 205, 50, 0);
+          float: right;
+          position: relative;
+          top: 15px;
+      }
+      button:hover {
+          color: white;
+          background-color: black;
+          cursor: pointer;
+          float: right;
+      }
+      
+      .main {
+        float: left;
+        width: 85%;
+        background-color: rgb(255,255,255);
+        position: relative;
+      }
+      
+      .main h2 {
+        margin:1em 30px;
+        color:#17BCE8;
+        font-size: 20px;
+        font-weight:600;
+        border-bottom: 1px solid #bbb;
+        padding: 0px 0px 20px 0px;
+      }
+      .hashTag {
+          width: 150px!important;
+          align-self: flex-start!important;
+          display: -webkit-inline-box!important;
+      }
+      
+      
+      .logo {
+        font: 300 2em "Source Sans Pro", Helvetica, Arial, sans-serif;
+        text-align: center;
+        padding: 0;
+        margin: 0;
+      }
+      .logo a {
+        display: block;
+        padding: 1em 0;
+        color: #DFDBD9;
+        text-decoration: none;
+        transition: .15s linear color;
+      }
+      .logo a:hover {
+        color: #fff;
+      }
+      .logo a:hover span {
+        color: #DF4500;
+      }
+      .logo span {
+        font-weight: 700;
+        transition: .15s linear color;
+      }
+      .logout {
+          position: absolute;
+          bottom: 10px;
+          color: #a8a6a9;
+          /* padding-left: 0; */
+          border-top: 1px solid #ded4cd;
+          padding-top: 20px;
+          width: -webkit-fill-available;
+          padding-left: 22px;
+      }
+      </style>
+</head>
+<body>
+    <div class="admin-panel">
+  
+        <div class="slidebar">
+            <h1 class="logo">
+                <a href="#">Go P<span>B</span></a>
+              </h1>
+              <ul>
+                <li><a href="/adm/addPhone"><i class="fa fa-file-video-o"></i>Add phone</a></li>
+                <li><a href="/adm/allPhones" ><i class="fa fa-file-video-o"></i>All Phones</a></li>
+                <li><a href="/adm/myPhones" ><i class="fa fa-file-video-o"></i>My Phones</a></li>
+                <li><a href="/adm/favorite" ><i class="fa fa-file-video-o"></i>Favorite</a></li>
+
+            </ul>
+            <a class="logout" href="/logout">Log out</a>
+        </div>
+      
+        <div class="main">
+             <div id="tab1"><h2 class="header">Add phone and name</h2></div>
+             <div class="insideMain">
+                    <div class="formText">
+                      <form id="dataForm">
+                        <p>Phone</p>
+                            <input name="phone" type="text">
+                        <p>Name</p>
+                            <input name="name" type="text">
+                            <br/><br/>
+                            <input name="favorite" type="checkbox">
+                            <span>Favorite</span>
+                            <br/><br/>
+                            <button type="submit">Save</button>
+                      </form>
+                    </div>
+             </div>
+        </div>
+      
+     
+    </div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
+<script>tinymce.init({ selector:'textarea' });</script>
+<script>
+$(document).ready(function() {
+
+  
+
+
+  dataForm.onsubmit = async (e) => {
+    e.preventDefault();
+    let el = document.getElementById("dataForm"),
+        data = new FormData(el)
+
+    console.info(data)
+    await fetch('/go/addPhone', {
+      method: 'POST',
+      body: new FormData(dataForm)
+    }).then(function(response) {
+        return response.text().then(function(text) {
+
+          if (text != "1") {
+            alert(text) 
+          } else {
+            alert("Save. If data was null then them will see only you")
+          }
+        })
+    })
+
+  };
+
+});
+</script>
+</body>
+</html>

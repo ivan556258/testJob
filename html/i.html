@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="http://localhost:4888/static/css/style.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="wrapper fadeInDown">
+        <div id="formContent">
+          <!-- Tabs Titles -->
+          <h2 id="in" class="active"> Sign In </h2>
+          <h2 id="up" class="active">Sign Up </h2>
+      
+          <!-- Icon -->
+          <div class="fadeIn first">
+            <img src="../static/boy.svg" id="icon" alt="User Icon" />
+          </div>
+      
+          <!-- Login Form -->
+          <form class="show" id="login">
+            <h3>Only login and password</h3>
+            <input type="text" id="login" class="fadeIn second" name="email" placeholder="login">
+            <input type="password" id="password" class="fadeIn third" name="password" placeholder="password">
+            <input type="submit" id="login" class="fadeIn fourth" value="Log In">
+          </form>
+
+          <!-- Login Form -->
+          <form id="registration" class="registration show">
+            <h3>You need do process registration</h3>
+            <input type="text" id="mail" class="fadeIn second" name="email" placeholder="Email">
+            <input type="submit" id="registration" class="fadeIn fourth" value="Send">
+          </form>
+
+           <!-- Login Form -->
+           <form id="forget" class="forget show">
+            <h3>Forget login and password and where born</h3>
+            <input type="text" id="email" class="fadeIn second" name="email" placeholder="Email">
+            <input type="submit" id="forget" class="fadeIn fourth" value="Send">
+          </form>
+      
+          <!-- Remind Passowrd -->
+          <div id="formFooter">
+            <a class="underlineHover">Forgot Password?</a>
+          </div>
+      
+        </div>
+      </div>
+<script defer src="../static/js/auth.js"></script>
+</body>
+</html>
